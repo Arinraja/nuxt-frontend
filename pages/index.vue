@@ -1,5 +1,5 @@
 <script setup>
- const { data: jobs } = await useFetch('http://127.0.0.1:8000/api/v1/jobs/newest/')
+ const { data: jobs } = await useFetch('import.meta.env.VITE_API_URL/jobs/newest/')
 </script>
 <!-- 
 <template>
