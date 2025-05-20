@@ -80,7 +80,6 @@ async function submitResetPassword() {
 </script> -->
 
 
-
 <template>
   <div class="max-w-md mx-auto p-8">
     <h1 class="text-3xl mb-6">Reset Password</h1>
@@ -112,3 +111,51 @@ async function submitResetPassword() {
     </form>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+
+const password1 = ref('')
+const password2 = ref('')
+const errors = ref([])
+const loading = ref(false)
+
+const token = ref('')
+
+onMounted(() => {
+  token.value = route.query.token || ''
+  if (!token.value) {
+    alert('Reset token missing or invalid')
+    router.push('/login')
+  }
+})
+
+async function submitResetPassword() {
+  errors.value = []
+  if (password1.value !== password2.value) {
+    errors.value.push("Passwords don't match")
+    return
+  }
+  loading.value = true
+
+  try {
+    await $fetch(`${import.meta.env.VITE_API_URL}/password-reset/confirm/`, {
+      method: 'POST',
+      body: {
+        token: token.value,
+        password: password1.value
+      }
+    })
+    alert('Password reset successfully!')
+    router.push('/login')
+  } catch (err) {
+    errors.value.push('Failed to reset password. Try again.')
+  } finally {
+    loading.value = false
+  }
+}
+</script>
