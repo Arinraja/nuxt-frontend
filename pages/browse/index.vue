@@ -10,7 +10,7 @@ function performSearch() {
 
 // Categories
 
-let {data: jobCategories} = await useFetch('import.meta.env.VITE_API_URL/jobs/categories')
+let { data: jobCategories } = await useFetch(`${import.meta.env.VITE_API_URL}/jobs/categories`)
 let selectedCategoriesRef = ref('')
 let selectedCategories = []
 
@@ -26,12 +26,13 @@ function toggleCategory(id) {
     selectedCategoriesRef.value = selectedCategories.join(',')
 }
 
-//
+// Jobs
 
-let {data: jobs} = await useFetch('import.meta.env.VITE_API_URL/v1/jobs/', {
+let { data: jobs } = await useFetch(`${import.meta.env.VITE_API_URL}/v1/jobs/`, {
     query: { query: queryRef, categories: selectedCategoriesRef }
 })
 </script>
+
 
 <template>
     <div class="grid md:grid-cols-4 gap-3 py-10 px-6">
