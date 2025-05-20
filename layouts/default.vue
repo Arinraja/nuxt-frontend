@@ -29,39 +29,54 @@ function logout() {
 
         <slot />
 
-        <footer class="p-6 flex flex-wrap items-center justify-between bg-gray-900">
-            <!-- <p class="text-gray-300">Copyright (c) 2025 IETSUPERCLASSMATES</p> -->
-             <p class="text-gray-300" style="text-shadow: 0 0 4px #00ff00, 0 0 8px #00ff00, 0 0 6px #ff0000; transition: all 0.3s ease-in-out;">Copyright &copy; 2025 IETSUPERCLASSMATES</p>
+        <footer class="p-6 flex flex-col md:flex-row items-center justify-between bg-gray-900 text-white">
+  <p class="text-gray-300 mb-4 md:mb-0" style="text-shadow: 0 0 4px #00ff00, 0 0 8px #00ff00, 0 0 6px #ff0000; transition: all 0.3s ease-in-out;">
+    Copyright &copy; 2025 IETSUPERCLASSMATES
+  </p>
 
+  <!-- 🌐 Social Icons -->
+  <div class="flex items-center space-x-6 mb-4 md:mb-0">
+    <a href="https://wa.me/your-number" target="_blank" class="hover:text-green-400 transition-transform transform hover:scale-110">
+      <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+    <a href="https://instagram.com/your-profile" target="_blank" class="hover:text-pink-400 transition-transform transform hover:scale-110">
+      <i class="fab fa-instagram text-2xl"></i>
+    </a>
+    <a href="https://t.me/your-telegram" target="_blank" class="hover:text-blue-400 transition-transform transform hover:scale-110">
+      <i class="fab fa-telegram text-2xl"></i>
+    </a>
+    <a href="mailto:your@email.com" class="hover:text-yellow-400 transition-transform transform hover:scale-110">
+      <i class="fas fa-envelope text-2xl"></i>
+    </a>
+  </div>
 
-            <div class="flex mt-6 md:mt-0 items-center space-x-4">
-                <template v-if="userStore.user.isAuthenticated">
-                    <NuxtLink to="/myjobs" class="py-4 px-6 bg-teal-900 hover:bg-teal-700 text-white rounded-xl">My jobs</NuxtLink>
-                    <NuxtLink to="/createjob" class="py-4 px-6 bg-teal-600 hover:bg-teal-700 text-white rounded-xl">Create job</NuxtLink>
-                    <a v-on:click="logout" class="py-4 px-6 bg-rose-600 hover:bg-rose-700 text-white rounded-xl">Log out</a>
-                </template>
+  <!-- 🔐 Auth Buttons -->
+  <div class="flex flex-wrap items-center space-x-4">
+    <template v-if="userStore.user.isAuthenticated">
+      <NuxtLink to="/myjobs" class="py-4 px-6 bg-teal-900 hover:bg-teal-700 text-white rounded-xl">My jobs</NuxtLink>
+      <NuxtLink to="/createjob" class="py-4 px-6 bg-teal-600 hover:bg-teal-700 text-white rounded-xl">Create job</NuxtLink>
+      <a v-on:click="logout" class="py-4 px-6 bg-rose-600 hover:bg-rose-700 text-white rounded-xl">Log out</a>
+    </template>
 
-                <template v-else>
-                    <!-- <NuxtLink to="/login" class="py-4 px-6 bg-teal-900 hover:bg-teal-700 text-white rounded-xl">Log in</NuxtLink>
-                    <NuxtLink to="/signup" class="py-4 px-6 bg-teal-600 hover:bg-teal-700 text-white rounded-xl">Sign up</NuxtLink> -->
-                    <NuxtLink 
-  to="/login" 
-  class="py-4 px-6 bg-teal-900 hover:bg-teal-700 text-white rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 ring-2 ring-white ring-opacity-30" 
-  style="box-shadow: 0 0 6px rgba(0,255,200,0.5), 0 0 12px rgba(0,255,200,0.4), 0 0 18px rgba(0,255,200,0.3);"
->
-  Log in
-</NuxtLink>
+    <template v-else>
+      <NuxtLink 
+        to="/login"
+        class="py-4 px-6 bg-teal-900 hover:bg-teal-700 text-white rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 ring-2 ring-white ring-opacity-30"
+        style="box-shadow: 0 0 6px rgba(0,255,200,0.5), 0 0 12px rgba(0,255,200,0.4), 0 0 18px rgba(0,255,200,0.3);"
+      >
+        Log in
+      </NuxtLink>
 
-<NuxtLink 
-  to="/signup" 
-  class="py-4 px-6 bg-teal-600 hover:bg-teal-700 text-white rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 ring-2 ring-white ring-opacity-30" 
-  style="box-shadow: 0 0 6px rgba(0,255,120,0.5), 0 0 12px rgba(0,255,120,0.4), 0 0 18px rgba(0,255,120,0.3);"
->
-  Sign up
-</NuxtLink>
+      <NuxtLink 
+        to="/signup"
+        class="py-4 px-6 bg-teal-600 hover:bg-teal-700 text-white rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 ring-2 ring-white ring-opacity-30"
+        style="box-shadow: 0 0 6px rgba(0,255,120,0.5), 0 0 12px rgba(0,255,120,0.4), 0 0 18px rgba(0,255,120,0.3);"
+      >
+        Sign up
+      </NuxtLink>
+    </template>
+  </div>
+</footer>
 
-                </template>
-            </div>
-        </footer>
     </div>
 </template>
