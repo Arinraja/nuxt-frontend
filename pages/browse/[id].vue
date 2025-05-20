@@ -1,7 +1,7 @@
 <script setup>
 const route = useRoute()
 
-const {data: job} = await useFetch('import.meta.env.VITE_API_URL/jobs/' + route.params.id + '/')
+const { data: job } = await useFetch(`${import.meta.env.VITE_API_URL}/jobs/${route.params.id}/`)
 
 useSeoMeta({
     title: job.value.title,
