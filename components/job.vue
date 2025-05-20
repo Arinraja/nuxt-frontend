@@ -15,7 +15,7 @@ const props = defineProps({
 })
 
 async function deleteJob(id) {
-    await $fetch('http://127.0.0.1:8000/api/v1/jobs/' + id + '/delete/', {
+    await $fetch('import.meta.env.VITE_API_URL/jobs/' + id + '/delete/', {
         method: 'DELETE',
         headers: {
             'Authorization': 'token ' + userStore.user.token,
