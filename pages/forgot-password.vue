@@ -1,77 +1,21 @@
-<!-- <template>
-  <div class="max-w-md mx-auto p-8">
-    <h1 class="text-3xl mb-6">Forgot Password</h1>
-    <p>Please enter your email to receive password reset instructions.</p>
-    <form @submit.prevent="submitForgotPassword">
-      <input
-        v-model="email"
-        type="email"
-        placeholder="Your email address"
-        class="w-full mb-4 p-3 border rounded"
-        required
-      />
-      <div v-if="message" :class="{'text-green-600': success, 'text-red-600': !success}" class="mb-4">
-        {{ message }}
-      </div>
-      <button
-        type="submit"
-        class="bg-teal-700 text-white py-3 px-6 rounded hover:bg-teal-800"
-        :disabled="loading"
-      >
-        {{ loading ? 'Sending...' : 'Send Reset Link' }}
-      </button>
-    </form>
-  </div>
-</template>
-
-<script setup>
-import { ref } from 'vue'
-
-const email = ref('')
-const message = ref('')
-const success = ref(false)
-const loading = ref(false)
-
-async function submitForgotPassword() {
-  message.value = ''
-  success.value = false
-  loading.value = true
-  try {
-    // Replace this URL with your backend password reset API endpoint
-    const response = await $fetch('http://127.0.0.1:8000/api/v1/password-reset/', {
-      method: 'POST',
-      body: { email: email.value }
-    })
-    message.value = 'If this email exists, a reset link has been sent.'
-    success.value = true
-  } catch (err) {
-    message.value = 'Failed to send reset link. Please try again.'
-    success.value = false
-  } finally {
-    loading.value = false
-  }
-}
-</script> -->
-
-
-
 <script setup>
 import { ref } from 'vue'
 
 const email = ref('')
 const success = ref(false)
 const error = ref(null)
+const loading = ref(false)
 
 async function sendResetLink() {
   error.value = null
   success.value = false
+  loading.value = true
 
   try {
-    await $fetch('import.meta.env.VITE_API_URL/users/reset_password/', {
+    await $fetch(`${import.meta.env.VITE_API_URL}/users/reset_password/`, {
       method: 'POST',
       body: { email: email.value }
     })
-
     success.value = true
   } catch (err) {
     console.error('Forgot password error:', err)
@@ -83,6 +27,8 @@ async function sendResetLink() {
     } else {
       error.value = 'Failed to send reset link. Please try again.'
     }
+  } finally {
+    loading.value = false
   }
 }
 </script>
@@ -96,15 +42,16 @@ async function sendResetLink() {
       type="email"
       placeholder="Enter your email"
       class="w-full p-4 mb-4 rounded-xl border border-gray-300"
+      :disabled="loading"
     />
 
     <button
       @click="sendResetLink"
       class="py-4 px-6 bg-teal-700 text-white rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 ring-2 ring-white ring-opacity-30"
-                  style="box-shadow: 0 0 6px rgba(0,255,150,0.5), 0 0 12px rgba(0,255,150,0.4), 0 0 18px rgba(0,255,150,0.3);"
-               
+      style="box-shadow: 0 0 6px rgba(0,255,150,0.5), 0 0 12px rgba(0,255,150,0.4), 0 0 18px rgba(0,255,150,0.3);"
+      :disabled="loading || !email"
     >
-      Send Reset Link
+      {{ loading ? 'Sending...' : 'Send Reset Link' }}
     </button>
 
     <div v-if="success" class="mt-4 text-green-600">
