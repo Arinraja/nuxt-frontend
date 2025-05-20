@@ -62,7 +62,7 @@ async function submitResetPassword() {
 
   try {
     // Replace with your backend reset password API
-    await $fetch('http://127.0.0.1:8000/api/v1/password-reset/confirm/', {
+    await $fetch('import.meta.env.VITE_API_URL/password-reset/confirm/', {
       method: 'POST',
       body: {
         token: token.value,
