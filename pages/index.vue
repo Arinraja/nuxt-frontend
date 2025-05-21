@@ -1,4 +1,5 @@
 <script setup>
+  definePageMeta({ ssr: false })
 // ✅ Use runtime config (Nuxt 3 best practice for env vars)
 const config = useRuntimeConfig()
 const { data: jobs, pending, error } = await useFetch(`${config.public.apiBase}/api/v1/jobs/newest/`)
