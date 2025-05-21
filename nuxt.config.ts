@@ -16,7 +16,13 @@ export default defineNuxtConfig({
       autoprefixer: {},
    },
  },
-
+nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: [], // Don't statically generate dynamic pages
+      ignore: ['/'] // Skip homepage from pre-rendering
+    }
+  },
  // compatibilityDate: '2024-12-22',
  modules: [
    '@pinia/nuxt',
