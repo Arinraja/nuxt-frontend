@@ -26,7 +26,7 @@ async function getJobs() {
   try {
     const response = await $fetch(`${config.public.apiBase}/jobs/my`, {
       headers: {
-        Authorization: 'Bearer ' + userStore.user.token,
+        Authorization: 'token ' + userStore.user.token,
         'Content-Type': 'application/json'
       },
     })
