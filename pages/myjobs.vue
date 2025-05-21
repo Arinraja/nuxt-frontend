@@ -1,3 +1,5 @@
+const config = useRuntimeConfig()
+
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
@@ -21,11 +23,24 @@ useSeoMeta({
   description: 'The description'
 })
 
-async function getJobs() {
+// async function getJobs() {
+//   try {
+//     const response = await $fetch(`${import.meta.env.VITE_API_URL}/jobs/my`, {
+//       headers: {
+//         'Authorization': 'token ' + userStore.user.token,
+//         'Content-Type': 'application/json'
+//       },
+//     })
+//     jobs.value = response
+//   } catch (error) {
+//     console.log('error', error)
+//   }
+// }
+  async function getJobs() {
   try {
-    const response = await $fetch(`${import.meta.env.VITE_API_URL}/jobs/my`, {
+    const response = await $fetch(`${config.public.apiBase}/jobs/my`, {
       headers: {
-        'Authorization': 'token ' + userStore.user.token,
+        Authorization: 'token ' + userStore.user.token,
         'Content-Type': 'application/json'
       },
     })
@@ -34,6 +49,7 @@ async function getJobs() {
     console.log('error', error)
   }
 }
+
 
 function deleteJob(id) {
   jobs.value = jobs.value.filter(job => job.id !== id)
