@@ -18,18 +18,26 @@
 
 //  compatibilityDate: '2024-12-23',
 // })
+
 export default defineNuxtConfig({
-  ssr: true,  // ✅ Server-side rendering enabled
-  nitro: {
-    preset: 'node-server'  // ✅ For Render
-  },
   css: ['~/assets/css/main.css'],
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-  modules: ['@pinia/nuxt'],
+
+  modules: [
+    '@pinia/nuxt',
+  ],
+
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.VITE_API_URL
+    }
+  },
+
   compatibilityDate: '2024-12-23',
 })
