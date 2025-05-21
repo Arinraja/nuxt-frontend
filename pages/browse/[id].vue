@@ -1,14 +1,16 @@
 <script setup>
 const route = useRoute()
+const config = useRuntimeConfig()  // ✅ Use runtime config to access public API URL
 
-const { data: job } = await useFetch(`${import.meta.env.VITE_API_URL}/jobs/${route.params.id}/`)
+const { data: job } = await useFetch(`${config.public.apiBase}/jobs/${route.params.id}/`)  // ✅ Correct way
 
 useSeoMeta({
-    title: job.value.title,
-    ogTitle: job.value.title,
-    description: job.value.description
+    title: job?.value?.title || 'Job Details',
+    ogTitle: job?.value?.title || 'Job Details',
+    description: job?.value?.description || 'View job details and apply now'
 })
 </script>
+
 
 <template>
     <div class="py-10 px-6 grid md:grid-cols-4 gap-3">
