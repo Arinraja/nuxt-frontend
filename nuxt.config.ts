@@ -4,7 +4,7 @@ export default defineNuxtConfig({
  // devtools: { enabled: true }
   runtimeConfig: {
     public: {
-      apiBase: process.env.VITE_API_URL || 'http://localhost:8000',
+      apiBase: 'https://django-backend-f9hr.onrender.com',
     },
   },
  css: ['~/assets/css/main.css'],
