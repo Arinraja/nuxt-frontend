@@ -1,33 +1,29 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
- // compatibilityDate: '2024-11-01',
- // devtools: { enabled: true }
   runtimeConfig: {
     public: {
-      // apiBase: process.env.API_BASE ||'https://django-backend-f9hr.onrender.com',
-     // apiBase: process.env.VITE_API_URL,
-     apiBase: process.env.VITE_API_URL || 'http://localhost:8000', 
+      apiBase: process.env.VITE_API_URL || 'http://localhost:8000',
     },
   },
- css: ['~/assets/css/main.css'],
 
- postcss: {
-   plugins: {
+  css: ['~/assets/css/main.css'],
+
+  postcss: {
+    plugins: {
       tailwindcss: {},
       autoprefixer: {},
-   },
- },
-nitro: {
+    },
+  },
+
+  nitro: {
     prerender: {
       crawlLinks: true,
-      routes: [], // Don't statically generate dynamic pages
-      ignore: ['/'] // Skip homepage from pre-rendering
-    }
+      routes: [],
+      ignore: ['/'],
+    },
   },
- // compatibilityDate: '2024-12-22',
- modules: [
-   '@pinia/nuxt',
- ],
 
- compatibilityDate: '2024-12-23',
+  modules: ['@pinia/nuxt'],
+
+  compatibilityDate: '2024-12-23',
 })
