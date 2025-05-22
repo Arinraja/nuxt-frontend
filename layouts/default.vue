@@ -28,33 +28,40 @@ function logout() {
         </nav>
 
         <slot />
-             <footer class="p-6 flex flex-col md:flex-row items-center justify-between bg-gray-900 text-white">
+
+        <footer class="p-6 flex flex-col md:flex-row items-center justify-between bg-gray-900 text-white">
   <p class="text-gray-300 mb-4 md:mb-0" style="text-shadow: 0 0 4px #00ff00, 0 0 8px #00ff00, 0 0 6px #ff0000; transition: all 0.3s ease-in-out;">
     Copyright &copy; 2025 IETSUPERCLASSMATES
   </p>
-  <!-- 🌐 Social Icons -->
-  <div class="flex items-center space-x-6 mb-4 md:mb-0">
-    <a href="https://wa.me/your-number" target="_blank" class="hover:text-green-400 transition-transform transform hover:scale-110">
-      <i class="fab fa-whatsapp text-2xl"></i>
-    </a>
-    <a href="https://instagram.com/your-profile" target="_blank" class="hover:text-pink-400 transition-transform transform hover:scale-110">
-      <i class="fab fa-instagram text-2xl"></i>
-    </a>
-    <a href="https://t.me/your-telegram" target="_blank" class="hover:text-blue-400 transition-transform transform hover:scale-110">
-      <i class="fab fa-telegram text-2xl"></i>
-    </a>
-    <a href="mailto:your@email.com" class="hover:text-yellow-400 transition-transform transform hover:scale-110">
-      <i class="fas fa-envelope text-2xl"></i>
-    </a>
-  </div>
-   <!-- 🔐 Auth Buttons -->
+
+
+  
+  <!-- Social Media Icons -->
+<div class="flex space-x-4 text-white mt-4">
+  <a href="https://wa.me/your_number" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp text-green-500 text-2xl hover:scale-110 transition-transform"></i>
+  </a>
+  <a href="https://www.instagram.com/your_username" target="_blank" aria-label="Instagram">
+    <i class="fab fa-instagram text-pink-500 text-2xl hover:scale-110 transition-transform"></i>
+  </a>
+  <a href="https://t.me/your_username" target="_blank" aria-label="Telegram">
+    <i class="fab fa-telegram text-blue-500 text-2xl hover:scale-110 transition-transform"></i>
+  </a>
+  <a href="mailto:your@email.com" aria-label="Email">
+    <i class="fas fa-envelope text-yellow-500 text-2xl hover:scale-110 transition-transform"></i>
+  </a>
+</div>
+
+
+  <!-- 🔐 Auth Buttons -->
   <div class="flex flex-wrap items-center space-x-4">
     <template v-if="userStore.user.isAuthenticated">
       <NuxtLink to="/myjobs" class="py-4 px-6 bg-teal-900 hover:bg-teal-700 text-white rounded-xl">My jobs</NuxtLink>
       <NuxtLink to="/createjob" class="py-4 px-6 bg-teal-600 hover:bg-teal-700 text-white rounded-xl">Create job</NuxtLink>
       <a v-on:click="logout" class="py-4 px-6 bg-rose-600 hover:bg-rose-700 text-white rounded-xl">Log out</a>
     </template>
-     <template v-else>
+
+    <template v-else>
       <NuxtLink 
         to="/login"
         class="py-4 px-6 bg-teal-900 hover:bg-teal-700 text-white rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 ring-2 ring-white ring-opacity-30"
@@ -62,7 +69,8 @@ function logout() {
       >
         Log in
       </NuxtLink>
-        <NuxtLink 
+
+      <NuxtLink 
         to="/signup"
         class="py-4 px-6 bg-teal-600 hover:bg-teal-700 text-white rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 ring-2 ring-white ring-opacity-30"
         style="box-shadow: 0 0 6px rgba(0,255,120,0.5), 0 0 12px rgba(0,255,120,0.4), 0 0 18px rgba(0,255,120,0.3);"
@@ -72,4 +80,6 @@ function logout() {
     </template>
   </div>
 </footer>
+
+    </div>
 </template>
