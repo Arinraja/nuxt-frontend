@@ -28,7 +28,7 @@ async function getJobs() {
   try {
     const response = await $fetch(`${config.public.apiBase}/api/v1/jobs/my`, {
       headers: {
-        Authorization: `Token ${userStore.user.token}`, // Capitalized 'Token'
+        Authorization: `Token ${userStore.user.token}`, // Capital 'Token'
         'Content-Type': 'application/json'
       },
     })
@@ -68,4 +68,3 @@ function deleteJob(id) {
     </div>
   </div>
 </template>
-
