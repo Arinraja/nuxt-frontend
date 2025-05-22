@@ -3,9 +3,7 @@ import { useUserStore } from '@/stores/user'
 import { defineProps, defineEmits } from 'vue'
 
 const userStore = useUserStore()
-
 const emit = defineEmits(['deleteJob'])
-
 const props = defineProps({
   my: {
     type: Boolean,
@@ -17,9 +15,12 @@ const props = defineProps({
   }
 })
 
+// Add this line
+const config = useRuntimeConfig()
+
 async function deleteJob(id) {
   try {
-    const response = await $fetch(`${import.meta.env.VITE_API_URL}/jobs/${id}/delete/`, {
+    const response = await $fetch(`${config.public.apiBase}/jobs/${id}/delete/`, {
       method: 'DELETE',
       headers: {
         Authorization: 'token ' + userStore.user.token,
@@ -33,6 +34,7 @@ async function deleteJob(id) {
   }
 }
 </script>
+
 
 <template>
   <div class="p-6 flex items-center justify-between bg-gray-100 rounded-xl">
