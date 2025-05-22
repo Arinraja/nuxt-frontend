@@ -20,7 +20,15 @@ const { data: job } = await useFetch(`${import.meta.env.VITE_API_URL}/jobs/${rou
 
 let title = ref(job.value.title)
 let description = ref(job.value.description)
-@@ -28,16 +30,16 @@
+let position_salary = ref(job.value.position_salary)
+let position_location = ref(job.value.position_location)
+let company_name = ref(job.value.company_name)
+let company_location = ref(job.value.company_location)
+let company_email = ref(job.value.company_email)
+let errors = ref([])
+
+async function submitForm() {
+    console.log('submitForm')
 
     errors.value = []
 
@@ -46,7 +54,7 @@ let description = ref(job.value.description)
             method: 'PUT',
             headers: {
                 'Authorization': 'token ' + userStore.user.token,
-                 'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: {
                 category: job.value.category,
@@ -67,12 +75,9 @@ let description = ref(job.value.description)
         })
         .catch(error => {
             if (error.response) {
-                  for (const property in error.response._data) {
+                for (const property in error.response._data) {
                     errors.value.push(`${property}: ${error.response._data[property]}`)
                 }
-                console.log(JSON.stringify(error.response))
-            } else if (error.message) {
-                errors.value.push('Something went wrong. Please try again')
                 console.log(JSON.stringify(error.response))
             } else if (error.message) {
                 errors.value.push('Something went wrong. Please try again')
